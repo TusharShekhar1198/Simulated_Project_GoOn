@@ -1,13 +1,14 @@
 const express = require('express');
 const connectToDB = require('./db');
 const bcrypt = require('bcrypt')
-const {UserDetails} = require('./User')
+const {SignupDetails} = require('./User')
 const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+app.use(express.json());
 
 app.post('/signup',async (req,res)=>{
   try{
@@ -16,7 +17,7 @@ app.post('/signup',async (req,res)=>{
       return res.status(400).json({message:'Email is already registered'})
     }
     const hashedpassword = await bcrypt.hash(req.body.password,10);
-    const newUser = new UserDetails({
+    const newUser = new SignupDetails({
       email:req.body.email,
       password:hashedpassword,
       mobileNo:req.body.mobileNo
