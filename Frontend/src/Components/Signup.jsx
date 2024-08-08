@@ -3,18 +3,18 @@ import axios from 'axios';
 
 const SignUp = () => {
     const[email,setEmail] = useState('');
-    const[MobileNo,setMobileNo] = useState('');
+    const[mobileNo,setMobileNo] = useState('');
     const[password,setPassword] = useState('');
     const[successmessage,setSuccessMessage] = useState('');
     const[errormessage,setErrorMessage] = useState('');
 
-    const handleSumbit = async (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         try{
             const response = await axios.post('http://localhost:3000/signup',{
                 email,
                 password,
-                MobileNo
+                mobileNo
             })
             setSuccessMessage('User sign up successfully');
             setErrorMessage('');
@@ -33,11 +33,11 @@ const SignUp = () => {
 
   return (
     <div>
-        <form onSubmit={handleSumbit}>
+        <form onSubmit={handleSubmit}>
         {successmessage && <p className='success-message'>{successmessage}</p>}
         {errormessage && <p className='error-message'>{errormessage}</p>}
       <input type='text' placeholder='username'value={email} onChange={(e)=>setEmail(e.target.value)}></input>
-      <input type='number' placeholder='MobileNo.' value={MobileNo} onChange={(e)=>setMobileNo(e.target.value)}></input>
+      <input type='number' placeholder='MobileNo.' value={mobileNo} onChange={(e)=>setMobileNo(e.target.value)}></input>
       <input type='password' placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}></input>
       <button type='Submit'>Signup</button>
       </form>
