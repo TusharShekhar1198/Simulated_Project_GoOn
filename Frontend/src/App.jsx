@@ -8,8 +8,11 @@ function App() {
 
   return (
     <>
+
       {/* <Login/> */}
       <SignUp/>
+     hello joyce
+
     </>
   )
 }
