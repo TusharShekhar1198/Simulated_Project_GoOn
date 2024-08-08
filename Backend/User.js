@@ -6,7 +6,7 @@ const SignupDetail = new mongoose.Schema({
     mobileNo:String
 })
 
-const SignupDetails = mongoose.model("signup",SignupDetail);
+const SignupDetails = mongoose.model("signups",SignupDetail);
 
 module.exports={SignupDetails}
 
