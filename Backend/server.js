@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.post('/signup',async (req,res)=>{
   try{
-    const SignupUser = await UserDetails.findOne({email:req.body.email,mobileNo:req.body.mobileNo})
+    const SignupUser = await SignupDetails.findOne({email:req.body.email,mobileNo:req.body.mobileNo})
     if(SignupUser){
       return res.status(400).json({message:'Email is already registered'})
     }
