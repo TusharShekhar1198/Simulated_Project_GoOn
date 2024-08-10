@@ -10,6 +10,18 @@ const SignUp = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
+        if (!email || !password) {
+          setErrorMessage('Please fill in all fields.');
+          return;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+          setErrorMessage('Please enter a valid email address.');
+          return;
+        }
+        if (!/(?=.*[a-zA-Z])(?=.*\d).{8,}/.test(password)) {
+          setErrorMessage('Password must contain at least 1 letter, 1 number, and be at least 8 characters long.');
+          return;
+        }
         try{
             const response = await axios.post('http://localhost:3000/signup',{
                 email,

@@ -1,6 +1,8 @@
-import { Route,Routes } from 'react-router-dom'
+import { BrowserRouter,Route,Routes } from 'react-router-dom'
+import React from 'react'
+import Signup from './Components/Signup'
+import Home from './Components/Home'
 // import Login from './Components/Login'
-import SignUp from './Components/Signup'
 import './App.css'
 
 function App() {
@@ -8,11 +10,13 @@ function App() {
 
   return (
     <>
-
-      {/* <Login/> */}
-      <SignUp/>
-     hello joyce
-
+    <BrowserRouter>
+  <Routes>
+    <Route path='/' element={<Home/>}></Route>  
+    <Route path='/Signup' element={<Signup/>}></Route>
+    {/* <Route path='/login'element={<Login/>}></Route> */}
+  </Routes>
+  </BrowserRouter>
     </>
   )
 }
