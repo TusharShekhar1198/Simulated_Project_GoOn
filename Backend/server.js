@@ -1,13 +1,15 @@
 const express = require('express');
 const connectToDB = require('./db');
 const bcrypt = require('bcrypt')
-const {SignupDetails} = require('./User')
+const {SignupDetails} = require('./User');
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+app.use(cors());
 app.use(express.json());
 
 app.post('/signup',async (req,res)=>{
@@ -15,7 +17,7 @@ app.post('/signup',async (req,res)=>{
     const SignupUser = await SignupDetails.findOne({email:req.body.email,mobileNo:req.body.mobileNo})
     if(SignupUser){
       return res.status(400).json({message:'Email is already registered'})
-    }
+    }``
     const hashedpassword = await bcrypt.hash(req.body.password,10);
     const newUser = new SignupDetails({
       email:req.body.email,

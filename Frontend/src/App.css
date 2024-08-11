@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Madimi+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Ojuju:wght@200..800&family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body{
+    margin: 0;
+    background-color: #D6F8E6;
+}
+
+.navbar{
+    display: flex;
+    /* margin-left: 5vw; */
+    background-color: #110E0E;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #E6F7ED;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    gap: 2vw;
+    height: 7vw;
+}
+.GoOnlogo{
+    width: 6.5vw;
+    margin-right: 5vw;
+    margin-left: 4vw;
+    height: 3.1vw;
+    margin-top: 1.9vw;
+}
+/* .firstnav{
+    display: flex;
+}
+ */
+ .home{
+    margin-top: 2.8vw;
+ }
+ .Jobs{
+    margin-top: 2.8vw;
+ }
+ .Rides{
+    margin-top: 2.8vw;
+ }
+ .Blog{
+    margin-top: 2.8vw;
+ }
+ .AboutUs{
+    margin-top: 2.8vw;
+ }
+ .earth{
+    margin-right: -3vw;
+ }
+.EarthGlobe{
+    width: 3vw;
+    height: 2vw;
+}
+.secondnav{
+    display: flex;
+    margin-left: 31vw;
+    gap: 2vw;
+    margin-top: 2.8vw;
+}
+.signupdiv{
+        background-color: #9CD9B8;
+        width: 6vw;
+        height: 2vw;
+        text-align: center;
+        margin-left: -0.6vw;
+        border-radius: 0.8vw;
+}
+.fontsignup{
+    color: #000;
+font-family: Roboto;
+/* font-size: 22px; */
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+li{
+    list-style-type: none;
+    gap: 2vw;
+}
+a:-webkit-any-link {
+    color: #E6F7ED;
+    cursor: pointer;
+    text-decoration: none;
+}
+.navbar li,
+.secondnav li {
+    position: relative; 
+}
+.navbar li:hover::after, 
+.secondnav li:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.3vw; 
+    width: 100%;
+    height: 0.2vw;
+    background-color: #9CD9B8;
+    transition: all 0.3s ease-in-out;
+}
+.main{
+    background-color: #110E0E;
+    height: 53vw;
+}
+.Homeimg1{
+    margin-left: 63.9vw;
+}
+.homeimg1{
+    margin-top: 2vw;
+    width: 37vw;
+    margin-left: -2vw;
+}
+.Request{
+    color: #E6F7ED;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 3vw;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 99.2%;
+    letter-spacing: 4px;
+    margin-top: -39vw;
+    margin-left: 8vw;
+}
+.GoOn1{
+    margin-left: 8vw;
+    /* width: 400px; */
+}
+input{
+    display: flex;
+    margin-left: 8vw;
+    border-radius: 7px;
+    background: #B8DEC9;
+    color: #555;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: 31vw;
+    height: 3vw;
+    text-align: center;
+    margin-top: 1.5vw;
+}
+.activestate{
+    margin-left: 8vw;
+    margin-top: -31.4vw;
+}
+.mappin{
+    margin-top: 2.5vw;
+    margin-left: 8vw;
+}
+
+.footer{
+    background-color: #9CD9B8;
+    box-shadow: 0px 10px 4px 0px rgba(0, 0, 0, 0.80);
+    height: 40vw;
+    margin-top: 100vw;
+    border: 2px solid #000;
+}
+.contactusfooter{
+    margin-top: 3vw;
+}
+.line5{
+    margin-left: 51vw;
+    margin-top: -13vw;
+    height: 23vw;
+}
+.phrase{
+    margin-left: -47vw;
+    margin-top: 7vw;
+    color: #252527;
+    font-family: 'Mulish';
+    font-size: 1.5vw;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+.footerbtn2{
+    font-size: 1.8vw;
+    color: white;
+    height: 3vw;
+    border-radius: 0.5vw;
+    border: 1px solid #000;
+    background-color: #070707;
+    box-shadow: 3px 7px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 21vw;
+    width: 12vw;
+    height: 4vw;
+}
+.Company{
+    color: #302E2E;
+    font-family: Mulish;
+    font-size: 20px;
+    font-style: normal;
+    /* display: flex; */
+    font-weight: 800;
+    /* flex-direction: row; */
+    line-height: normal;
+    margin-left: 57vw;
+    margin-bottom: -19.6vw;
+    margin-top: -25vw;
+}
+.legal{
+    color: #302E2E;
+    font-family: Mulish;
+    font-size: 20px;
+    font-style: normal;
+    /* display: flex; */
+    font-weight: 800;
+    /* flex-direction: row; */
+    line-height: normal;
+    margin-left: 76vw;
+}
+.Company li{
+    /* display: flex; */
+    list-style-type: none;
+    gap: 7vw;
+    font-size: 1.4vw;
+    color: black;
+    font-family: 'Muslish';
+    font-weight: 500;  
+    /* margin-left: 2vw; */
+    margin-top: -3vw;
+}  
+.legal li{
+    /* display: flex; */
+    list-style-type: none;
+    /* gap: 7vw; */
+    font-size: 1.4vw;
+    color: black;
+    font-family: 'Muslish';
+    font-weight: 500;  
+    /* margin-left: 2vw; */
+    margin-top: -3vw;
+}   
+.gmail{
+    color: #0F0E0E;
+    text-align: center;
+    font-family: 'Mulish';
+    font-size: 1.3vw;
+    text-align: center;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.78px;
+    margin-top: -4.2vw;
+    margin-left: 17vw;
+}
+.copyright{
+    color: #000;
+    text-align: center;
+    font-family: 'Mulish';
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: -19vw;
+    margin-top: 1vw;
+}
+.desimg{
+    margin-top: 0.7vw;
+    width: 100%;
+}
+.icons{
+    margin-top: 43vw;
+    margin-left: 8vw;
+    display: flex;
+    color: #302E2E;
+    column-gap: 5vw;
+    font-family: Mulish;
+    /* font-size: 30.192px; */
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+
+}
+.ico1 {
+    margin-left: 0.4vw;
+    width: 3vw;
+    margin-top: 1vw;
+    height: 3vw;
+}
+.ico2 {
+    margin-left: 0.4vw;
+    width: 3vw;
+    height: 3vw;
+    margin-top: 1vw;
+}
+.ico3 {
+    margin-left: 0.4vw;
+    width: 3vw;
+    height: 3vw;
+    margin-top: 1vw;
+}
+.ico4 {
+    margin-left: 0.4vw;
+    width: 3vw;
+    height: 3vw;
+    margin-top: 1vw;
+}
