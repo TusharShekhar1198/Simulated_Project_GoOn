@@ -52,6 +52,7 @@ const SignUp = () => {
       <input type='number' placeholder='MobileNo.' value={mobileNo} onChange={(e)=>setMobileNo(e.target.value)}></input>
       <input type='password' placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}></input>
       <button type='Submit'>Signup</button>
+      <h1>hi</h1>
       </form>
     </div>
   )
