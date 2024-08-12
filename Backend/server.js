@@ -1,6 +1,7 @@
 const express = require('express');
 const connectToDB = require('./db');
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const {SignupDetails} = require('./User');
 const cors = require('cors');
 const app = express();
@@ -31,6 +32,26 @@ app.post('/signup',async (req,res)=>{
     console.log(error);
   }
 })
+app.post('/login', async (req, res) => {
+  try {
+    const user = await SignupDetails.findOne({ email: req.body.email.toLowerCase() });
+    if (!user) {
+      return res.status(400).send('User does not exist. Please sign up first.');
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).send('Incorrect password.');
+    }
+
+    const token = jwt.sign({ email: user.email }, 'SECRET', { expiresIn: '1h' });
+    res.json({ message: 'Login successful', token });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).send('Error occurred during login');
+  }
+});
+
 connectToDB().then(() => {
   app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

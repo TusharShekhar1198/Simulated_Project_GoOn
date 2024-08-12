@@ -1,21 +1,68 @@
-// import React, { useState } from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-// const Login = () => {
-//     const[username,setUsername] = useState('');
-//     const[MobileNo,setMobileNo] = useState('');
-//     const[password,setPassword] = useState('');
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
-//     const handleSumbit = (e)=>{
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      setErrorMessage('Please fill in all fields.');
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
 
-//     }
+    try {
+      const response = await axios.post('http://localhost:3000/login', {
+        email,
+        password,
+      });
+      setSuccessMessage('Login successful!');
+      setErrorMessage('');
 
-//   return (
-//     <div>
-//       <input type='text' placeholder='username'value={username} onChange={(e)=>setUsername(e.target.value)}></input>
-//       <input type='number' placeholder='MobileNo.' value={MobileNo} onChange={(e)=>setMobileNo(e.target.value)}></input>
-//       <input type='password' placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}></input>
-//     </div>
-//   )
-// }
+      // Navigate to the home page after a short delay
+      setTimeout(() => {
+        navigate('/');
+      }, 1500);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data);
+      } else {
+        setErrorMessage('Error logging in: ' + error.message);
+      }
+      setSuccessMessage('');
+    }
+  };
 
-// export default Login
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
