@@ -55,7 +55,7 @@ body{
 }
 .secondnav{
     display: flex;
-    margin-left: 31vw;
+    margin-left: 21vw;
     gap: 2vw;
     margin-top: 2.8vw;
 }

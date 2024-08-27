@@ -28,7 +28,6 @@ const Login = () => {
       setSuccessMessage('Login successful!');
       setErrorMessage('');
 
-      // Navigate to the home page after a short delay
       setTimeout(() => {
         navigate('/');
       }, 1500);
