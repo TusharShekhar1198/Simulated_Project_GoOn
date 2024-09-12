@@ -3,7 +3,7 @@ const express = require('express');
 const connectToDB = require('./db');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {SignupDetails} = require('./User');
+const {SignupDetails,HelpDetails} = require('./User');
 const axios = require('axios');
 const cors = require('cors');
 const app = express();
@@ -85,12 +85,12 @@ app.get('/api/directions', async (req, res) => {
   }
 });
 
-// Create a new endpoint for the Distance Matrix API
+
 app.get('/api/distance-matrix', async (req, res) => {
   const { origins, destinations } = req.query;
 
   try {
-    // Validate that origins and destinations are provided
+
     if (!origins || !destinations) {
       return res.status(400).json({ message: 'Origins and destinations are required' });
     }
@@ -99,10 +99,10 @@ app.get('/api/distance-matrix', async (req, res) => {
       params: {
         origins,
         destinations,
-        mode: 'driving', // or 'walking', 'bike' as per your requirements
+        mode: 'driving', 
       },
       headers: {
-        'Authorization': `Bearer ${apiKey}`,  // Add API key for authorization
+        'Authorization': `Bearer ${apiKey}`, 
         'X-Request-Id': 'some-unique-id',
         'X-Correlation-Id': 'some-transaction-id',
       },
@@ -115,6 +115,38 @@ app.get('/api/distance-matrix', async (req, res) => {
   }
 });
 
+app.get('/api/help', async (req, res) => {
+  try {
+    const helpDetails = await HelpDetails.find(); 
+    res.status(200).json(helpDetails);
+  } catch (error) {
+    console.error('Error fetching help details:', error.message);
+    res.status(500).json({ message: 'Error fetching help details', error: error.message });
+  }
+});
+
+app.post('/api/help', async (req, res) => {
+  try {
+    const { question } = req.body;
+
+ 
+    if (!question) {
+      return res.status(400).json({ message: 'Question is required' });
+    }
+
+    
+    const newHelpDetail = new HelpDetails({
+      question,
+      answer: '' 
+    });
+
+    const savedHelpDetail = await newHelpDetail.save(); 
+    res.status(201).json(savedHelpDetail); 
+  } catch (error) {
+    console.error('Error posting help question:', error.message);
+    res.status(500).json({ message: 'Error posting help question', error: error.message });
+  }
+});
 
 
 connectToDB().then(() => {
