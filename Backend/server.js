@@ -1,18 +1,25 @@
+require('dotenv').config();
 const express = require('express');
 const connectToDB = require('./db');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {SignupDetails} = require('./User');
+const axios = require('axios');
 const cors = require('cors');
 const app = express();
 const port = 3000;
 
+
+app.use(cors());
+app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
-app.use(cors());
-app.use(express.json());
 
+const clientID = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+const apiKey = process.env.API_KEY;
+const directionApiUri = process.env.DIRECTIONS_API_URL;
 app.post('/signup',async (req,res)=>{
   try{
     const SignupUser = await SignupDetails.findOne({email:req.body.email,mobileNo:req.body.mobileNo})
@@ -51,6 +58,64 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Error occurred during login');
   }
 });
+
+app.get('/api/directions', async (req, res) => {
+  const { origin, destination } = req.query;
+
+  try {
+    // Validate parameters
+    if (!origin || !destination) {
+      return res.status(400).json({ message: 'Origin and destination are required' });
+    }
+
+    const response = await axios.get(directionApiUri, {
+      params: {
+        origin,
+        destination
+      },
+      headers: {
+        'Authorization': `Bearer ${apiKey}`
+      }
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching directions:', error.response ? error.response.data : error.message);
+    res.status(500).json({ message: 'Failed to fetch directions', error: error.message });
+  }
+});
+
+// Create a new endpoint for the Distance Matrix API
+app.get('/api/distance-matrix', async (req, res) => {
+  const { origins, destinations } = req.query;
+
+  try {
+    // Validate that origins and destinations are provided
+    if (!origins || !destinations) {
+      return res.status(400).json({ message: 'Origins and destinations are required' });
+    }
+
+    const response = await axios.get(`${directionApiUri}/routing/v1/distanceMatrix`, {
+      params: {
+        origins,
+        destinations,
+        mode: 'driving', // or 'walking', 'bike' as per your requirements
+      },
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,  // Add API key for authorization
+        'X-Request-Id': 'some-unique-id',
+        'X-Correlation-Id': 'some-transaction-id',
+      },
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching distance matrix:', error.response ? error.response.data : error.message);
+    res.status(500).json({ message: 'Failed to fetch distance matrix', error: error.message });
+  }
+});
+
+
 
 connectToDB().then(() => {
   app.listen(port, () => {

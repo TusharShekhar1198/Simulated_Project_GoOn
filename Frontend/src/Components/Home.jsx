@@ -50,7 +50,7 @@ const Home = () => {
         <Link to='/'><img src={GoOnlogo} className='GoOnlogo' alt='GoOn logo' /></Link>
         <Link to='/'><li className='home'>{t('home_key')}</li></Link>
         <li className='Jobs'>{t('jobs_key')}</li>
-        <li className='Rides'>{t('rides_key')}</li>
+        <Link to='/ride'><li className='Rides'>{t('rides_key')}</li></Link>
         <li className='Blog'>{t('blog_key')}</li>
         <li className='AboutUs'>{t('aboutus_key')}</li>
         <div className='secondnav'>
