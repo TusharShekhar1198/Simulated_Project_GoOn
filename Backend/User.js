@@ -6,8 +6,20 @@ const SignupDetail = new mongoose.Schema({
     mobileNo:String
 })
 
-const SignupDetails = mongoose.model("signups",SignupDetail);
+const HelpDetail = new mongoose.Schema({
+    question: {
+      type: String,
+      required: true
+    },
+    answer: {
+      type: String,
+      default: ''
+    }
+  });
 
-module.exports={SignupDetails}
+const SignupDetails = mongoose.model("signups",SignupDetail);
+const HelpDetails = mongoose.model("help",HelpDetail);
+
+module.exports={SignupDetails,HelpDetails}
 
 
