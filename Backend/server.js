@@ -3,7 +3,7 @@ const express = require('express');
 const connectToDB = require('./db');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {SignupDetails} = require('./User');
+const {SignupDetails,HelpDetails} = require('./User');
 const axios = require('axios');
 const cors = require('cors');
 const app = express();
@@ -115,6 +115,38 @@ app.get('/api/distance-matrix', async (req, res) => {
   }
 });
 
+app.get('/api/help', async (req, res) => {
+  try {
+    const helpDetails = await HelpDetails.find(); 
+    res.status(200).json(helpDetails);
+  } catch (error) {
+    console.error('Error fetching help details:', error.message);
+    res.status(500).json({ message: 'Error fetching help details', error: error.message });
+  }
+});
+
+app.post('/api/help', async (req, res) => {
+  try {
+    const { question } = req.body;
+
+ 
+    if (!question) {
+      return res.status(400).json({ message: 'Question is required' });
+    }
+
+    
+    const newHelpDetail = new HelpDetails({
+      question,
+      answer: '' 
+    });
+
+    const savedHelpDetail = await newHelpDetail.save(); 
+    res.status(201).json(savedHelpDetail); 
+  } catch (error) {
+    console.error('Error posting help question:', error.message);
+    res.status(500).json({ message: 'Error posting help question', error: error.message });
+  }
+});
 
 
 connectToDB().then(() => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import DeckGL from '@deck.gl/react';
 import { Map } from 'react-map-gl';
 import axios from 'axios';
@@ -7,33 +7,39 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
 const MapComponent = () => {
   const apiKey = import.meta.env.VITE_Ola_API_KEY;
-  
+
   const [viewState, setViewState] = useState({
-    longitude: 77.5946, // Default starting point
+    longitude: 77.5946,
     latitude: 12.9716,
     zoom: 10,
   });
 
   const [directions, setDirections] = useState(null);
-  const [origin, setOrigin] = useState(''); // User input for origin
-  const [destination, setDestination] = useState(''); // User input for destination
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
+  const [vehicleOptions, setVehicleOptions] = useState([]);
 
-  // Function to fetch directions from the backend
   const fetchDirections = async () => {
     try {
       const response = await axios.post('http://localhost:3000/api/directions', {
-        params: {
-          origin,
-          destination,
-        }
+        params: { origin, destination },
       });
       setDirections(response.data);
+      fetchVehicleOptions();
     } catch (error) {
       console.error('Error fetching directions:', error);
     }
   };
 
-  // Handle form submission to get directions
+  const fetchVehicleOptions = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/vehicles');
+      setVehicleOptions(response.data);
+    } catch (error) {
+      console.error('Error fetching vehicle options:', error);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchDirections();
@@ -83,12 +89,7 @@ const MapComponent = () => {
             mapLib={maplibregl}
             mapStyle="https://api.olamaps.io/tiles/vector/v1/styles/default-light-standard/style.json"
             transformRequest={(url, resourceType) => {
-              if (url.includes("?")) {
-                url = url + `&api_key=${apiKey}`;
-              } else {
-                url = url + `?api_key=${apiKey}`;
-              }
-              return { url, resourceType };
+              return { url: url.includes("?") ? `${url}&api_key=${apiKey}` : `${url}?api_key=${apiKey}`, resourceType };
             }}
           />
         </DeckGL>
@@ -97,7 +98,22 @@ const MapComponent = () => {
       {directions && (
         <div style={{ marginTop: '20px' }}>
           <h3>Directions</h3>
-          <pre>{JSON.stringify(directions, null, 2)}</pre> {/* Display direction data */}
+          <pre>{JSON.stringify(directions, null, 2)}</pre>
+        </div>
+      )}
+
+      {vehicleOptions.length > 0 && (
+        <div style={{ marginTop: '20px' }}>
+          <h3>Vehicle Options</h3>
+          {vehicleOptions.map(vehicle => (
+            <div key={vehicle._id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+              <img src={vehicle.image} alt={vehicle.name} style={{ width: '50px', height: '50px', marginRight: '10px' }} />
+              <div>
+                <h4>{vehicle.name}</h4>
+                <p>{vehicle.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
