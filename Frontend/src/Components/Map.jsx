@@ -83,7 +83,7 @@ const MapComponent = () => {
           viewState={viewState}
           onViewStateChange={({ viewState }) => setViewState(viewState)}
           controller={true}
-          layers={[]} // You can add layers to show routes, markers, etc.
+          layers={[]} 
         >
           <Map
             mapLib={maplibregl}
