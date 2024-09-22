@@ -24,7 +24,7 @@ const HelpDetail = new mongoose.Schema({
 
 const SignupDetails = mongoose.model("signups",SignupDetail);
 const HelpDetails = mongoose.model("helps",HelpDetail);
-const VehicleDetails = mongoose.model("vehicle",VehicleDetail)
+const VehicleDetails = mongoose.model("vehicles",VehicleDetail)
 
 module.exports={SignupDetails,HelpDetails,VehicleDetails}
 
