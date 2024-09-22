@@ -3,7 +3,7 @@ const express = require('express');
 const connectToDB = require('./db');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {SignupDetails,HelpDetails} = require('./User');
+const {SignupDetails,HelpDetails,VehicleDetails} = require('./User');
 const axios = require('axios');
 const passport = require('passport');
 const session = require('express-session');
@@ -210,6 +210,14 @@ app.post('/api/help', async (req, res) => {
   } catch (error) {
     console.error('Error posting help question:', error.message);
     res.status(500).json({ message: 'Error posting help question', error: error.message });
+  }
+});
+app.get('/api/vehicles', async (req, res) => {
+  try {
+    const vehicles = await VehicleDetails.find();
+    res.json(vehicles);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching vehicles' });
   }
 });
 
