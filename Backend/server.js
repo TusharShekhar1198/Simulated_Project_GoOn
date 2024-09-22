@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {SignupDetails,HelpDetails} = require('./User');
 const axios = require('axios');
+const passport = require('passport');
+const session = require('express-session');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const cors = require('cors');
 const app = express();
 const port = 3000;
@@ -20,6 +23,8 @@ const clientID = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 const apiKey = process.env.API_KEY;
 const directionApiUri = process.env.DIRECTIONS_API_URL;
+const GOOGLE_CLIENT_ID = process.env.Google_Client_ID;
+const GOOGLE_CLIENT_SECRET = process.env.Google_Client_secret;
 app.post('/signup',async (req,res)=>{
   try{
     const SignupUser = await SignupDetails.findOne({email:req.body.email,mobileNo:req.body.mobileNo})
@@ -58,6 +63,66 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Error occurred during login');
   }
 });
+
+// passport.use(new GoogleStrategy({
+//   clientID: GOOGLE_CLIENT_ID,
+//   clientSecret: GOOGLE_CLIENT_SECRET,
+//   callbackURL: 'http://localhost:3000/auth/google/callback'
+// }, async (accessToken, refreshToken, profile, done) => {
+//   try {
+//     // Check if the user already exists in your database
+//     let user = await SignupDetails.findOne({ email: profile.emails[0].value });
+
+//     if (!user) {
+//       // Create a new user if not found
+//       user = new SignupDetails({
+//         email: profile.emails[0].value,
+//         googleId: profile.id,
+//         name: profile.displayName,
+//       });
+//       await user.save();
+//     }
+
+//     return done(null, user);
+//   } catch (error) {
+//     return done(error, null);
+//   }
+// }));
+
+// passport.serializeUser((user, done) => {
+//   done(null, user.id);
+// });
+
+// passport.deserializeUser(async (id, done) => {
+//   try {
+//     const user = await SignupDetails.findById(id);
+//     done(null, user);
+//   } catch (error) {
+//     done(error, null);
+//   }
+// });
+
+// // Google OAuth Routes
+// app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+// app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+//   res.redirect('/');
+// });
+
+// app.get('/logout', (req, res) => {
+//   req.logout(() => {
+//     res.redirect('/');
+//   });
+// });
+
+// app.get('/user', (req, res) => {
+//   if (req.isAuthenticated()) {
+//     res.json(req.user);
+//   } else {
+//     res.status(401).json({ message: 'Not authenticated' });
+//   }
+// });
+
 
 app.get('/api/directions', async (req, res) => {
   const { origin, destination } = req.query;
