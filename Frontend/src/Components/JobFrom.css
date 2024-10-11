@@ -1,0 +1,16 @@
+.shippingForm{
+    /* border: 1px solid black; */
+}
+.shippingForm label{
+    font-size: 20px;
+}
+.shippingForm #name{
+    margin: 0;
+}
+.shippingForm .form-control{
+    width: 80%;
+    margin: 10px 0;
+    box-shadow: none;
+    border: 1px solid black;
+    text-align: left;
+}

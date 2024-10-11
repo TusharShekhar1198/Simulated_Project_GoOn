@@ -1,0 +1,21 @@
+.main-c{
+    margin: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading{
+    text-align: center;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: x-large  ;
+}
+
+.g-logo{
+    width: 6.5vw;
+    margin-right: 5vw;
+    margin-left: 47vw;
+    height: 3.1vw;
+    margin-top: 1.9vw;
+}

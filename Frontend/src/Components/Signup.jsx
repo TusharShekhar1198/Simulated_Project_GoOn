@@ -30,6 +30,8 @@ const SignUp = () => {
     setErrorMessage('');
   };
 
+
+  
   const handleGoogleSignup = async (tokenResponse) => {
     try {
       const { credential } = tokenResponse; // Token returned by Google

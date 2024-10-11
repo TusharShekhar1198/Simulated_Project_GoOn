@@ -49,7 +49,7 @@ const Home = () => {
       <div className='navbar'>
         <Link to='/'><img src={GoOnlogo} className='GoOnlogo' alt='GoOn logo' /></Link>
         <Link to='/'><li className='home'>{t('home_key')}</li></Link>
-        <li className='Jobs'>{t('jobs_key')}</li>
+        <Link to='/nokri' > <li className='Jobs'>{t('jobs_key')}</li> </Link>
         <Link to='/ride'><li className='Rides'>{t('rides_key')}</li></Link>
         <li className='Blog'>{t('blog_key')}</li>
         <li className='AboutUs'>{t('aboutus_key')}</li>
@@ -64,7 +64,7 @@ const Home = () => {
               isSearchable={false}
             />
           </div>
-          <li>{t('help_key')}</li>
+           <Link to='/helpPage'  ><li>{t('help_key')}</li></Link> 
           <Link to='/login'><li>{t('login_key')}</li></Link>
           <div className='signupdiv'><Link to='/signup'><li className='fontsignup'>{t('signup_key')}</li></Link></div>
         </div>
