@@ -1,0 +1,90 @@
+.GoOnlogo-N{
+    width: 6.5vw;
+    margin-right: 5vw;
+    margin-left: 4vw;
+    height: 3.1vw;
+    margin-top: 1.9vw;
+}
+.navbar{
+    display: flex;
+    /* margin-left: 5vw; */
+    background-color: #110E0E;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #E6F7ED;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    gap: 2vw;
+    height: 7vw;
+}
+
+.Homeimg1-N{
+    margin-left: 59.9vw;
+    /* margin-bottom: 1vw; */
+}
+.homeimg1-N{
+    margin-top: 0%;
+    width: 40vw;
+    margin-left: 0vw;
+}
+
+.Request-N{
+    color: #E6F7ED;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 3vw;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 99.2%;
+    letter-spacing: 4px;
+    margin-top: -42vw;
+    margin-left: 7vw;
+    padding: 1vw;
+}
+
+.GoOn1-N{
+    margin-left: 8vw;
+    /* width: 400px; */
+}
+.main-N{
+    background-color: #110E0E;
+    height: 50vw;
+    padding: 0.1px;
+    margin-top: 0px;
+}
+
+.Request-N-2{
+    /* color: #E6F7ED; */
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    font-size: 4vw;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 99.2%;
+    letter-spacing: 4px;
+    margin-top: 5vw;
+    margin-left: 15vw;
+}
+
+.image-nokri{
+    margin-top: 10vw;
+    /* height: 1000px; */
+    width:89vw;
+    margin-left: 6vw;
+    
+}
+.R-N-2{
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Roboto;
+    color: #E6F7ED;
+    font-size: 2vw;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 99.2%;
+    letter-spacing: 4px;
+    margin-top: 2vw;
+    margin-left: 8vw;
+}

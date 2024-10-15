@@ -3,7 +3,7 @@ const express = require('express');
 const connectToDB = require('./db');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {SignupDetails,HelpDetails,VehicleDetails} = require('./User');
+const {SignupDetails,HelpDetails,VehicleDetails, JobDetails} = require('./User');
 const axios = require('axios');
 const passport = require('passport');
 const session = require('express-session');
@@ -11,6 +11,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const cors = require('cors');
 const app = express();
 const port = 3000;
+
 
 
 app.use(cors());
@@ -180,6 +181,9 @@ app.get('/api/distance-matrix', async (req, res) => {
   }
 });
 
+
+
+
 app.get('/api/help', async (req, res) => {
   try {
     const helpDetails = await HelpDetails.find(); 
@@ -220,6 +224,22 @@ app.get('/api/vehicles', async (req, res) => {
     res.status(500).json({ message: 'Error fetching vehicles' });
   }
 });
+
+
+
+app.post('/api/jobdetail',async(req,res)=>{
+  try{
+    const {name,address,city,state} = req.body
+    await JobDetails.create({name,address,city,state})
+    res.send("Details has been stored succesfully")
+  }
+  catch(error){
+    res.send(error,"error has been occured in jobdetail")
+  }
+    
+})
+
+
 
 
 connectToDB().then(() => {
